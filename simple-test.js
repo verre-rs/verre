@@ -1,4 +1,4 @@
-const { plus100 } = require('./index')
+import { plus100 } from './index'
 
 console.assert(plus100(0) === 100, 'Simple test failed')
 

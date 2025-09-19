@@ -56,4 +56,6 @@ const {
   },
 })
 export default __napiModule.exports
-export const plus100 = __napiModule.exports.plus100
+export const Request = __napiModule.exports.Request
+export const Response = __napiModule.exports.Response
+export const Verre = __napiModule.exports.Verre

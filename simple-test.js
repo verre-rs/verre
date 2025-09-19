@@ -1,5 +1,7 @@
-import { plus100 } from './index'
+import { Verre, Response } from './index.js'
 
-console.assert(plus100(0) === 100, 'Simple test failed')
+const app = new Verre()
 
-console.info('Simple test passed')
+app.get('/', () => Response.new('Hello from Verre!'))
+
+app.serve()

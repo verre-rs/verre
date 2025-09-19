@@ -3,7 +3,9 @@ ignorePaths: []
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - cdylib
   - clippy
+  - codegen
   - emnapi
   - msvc
   - napi
@@ -11,6 +13,8 @@ words:
   - oxlint
   - pkgs
   - rustc
+  - serde
+  - Threadsafe
   - tybys
   - verre
 ignoreWords: []

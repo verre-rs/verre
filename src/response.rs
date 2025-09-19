@@ -17,10 +17,15 @@ pub struct Response {}
 
 #[napi]
 impl Response {
+  #[napi(constructor)]
+  pub fn new() -> Self {
+    Self {}
+  }
+
   // TODO: options
   // https://developer.mozilla.org/en-US/docs/Web/API/Response/Response#options
   #[napi]
-  pub fn new(body: String) -> ResponseInner {
+  pub fn text(body: String) -> ResponseInner {
     ResponseInner {
       headers: None,
       status: None,

@@ -54,3 +54,9 @@ impl Verre {
     axum::serve(listener, self.0.clone()).await.unwrap()
   }
 }
+
+impl Default for Verre {
+  fn default() -> Self {
+    Self::new()
+  }
+}

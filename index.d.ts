@@ -6,7 +6,8 @@ export declare class Request {
 }
 
 export declare class Response {
-  static new(body: string): ResponseInner
+  constructor()
+  static text(body: string): ResponseInner
   static json(value: any): ResponseInner
 }
 

@@ -1,4 +1,5 @@
-#![deny(clippy::all)]
+// #![deny(clippy::all)]
+#![allow(clippy::missing_safety_doc)]
 
 mod request;
 mod response;

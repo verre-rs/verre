@@ -1,6 +1,7 @@
 {
   "name": "@verre/core",
   "version": "1.1.1",
+  "type": "module",
   "description": "Template project for writing node package with napi-rs",
   "main": "index.js",
   "types": "index.d.ts",
@@ -46,8 +47,8 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release",
-    "build:debug": "napi build --platform",
+    "build": "napi build --esm --platform --release",
+    "build:debug": "napi --esm build --platform",
     "format": "run-p format:rs",
     "format:rs": "cargo fmt",
     "lint": "oxlint",

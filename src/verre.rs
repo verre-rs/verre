@@ -3,7 +3,9 @@ use std::sync::Arc;
 use axum::response::Response;
 use axum::{body::Body, http::Request};
 use axum::{routing, Router};
+use napi::bindgen_prelude::Promise;
 use napi::threadsafe_function::ThreadsafeFunction;
+use napi::Either;
 use napi_derive::napi;
 
 use crate::{into_response, VerreRequest, VerreResponse};
@@ -20,19 +22,26 @@ impl Verre {
 
   async fn use_handler(
     req: Request<Body>,
-    handler: Arc<ThreadsafeFunction<VerreRequest, VerreResponse>>,
+    handler: Arc<ThreadsafeFunction<VerreRequest, Either<VerreResponse, Promise<VerreResponse>>>>,
   ) -> Response {
     let handler = Arc::clone(&handler);
 
     let req = VerreRequest::from_axum(req);
 
-    let res = handler.call_async(Ok(req)).await.unwrap();
+    let res = match handler.call_async(Ok(req)).await.unwrap() {
+      Either::A(res) => res,
+      Either::B(promise) => promise.await.unwrap(),
+    };
 
     into_response(res)
   }
 
   #[napi]
-  pub fn get(&mut self, path: String, handler: ThreadsafeFunction<VerreRequest, VerreResponse>) {
+  pub fn get(
+    &mut self,
+    path: String,
+    handler: ThreadsafeFunction<VerreRequest, Either<VerreResponse, Promise<VerreResponse>>>,
+  ) {
     let handler = Arc::new(handler);
 
     self.0 = self.0.clone().route(

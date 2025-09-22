@@ -2,13 +2,16 @@
 /* eslint-disable */
 export declare class Request {
   bytes(): Promise<Uint8Array | null>
+  json(): Promise<any | null>
   get url(): string
+  get query(): string | null
+  get headers(): Record<string, string>
 }
 export type VerreRequest = Request
 
 export declare class Verre {
   constructor()
-  get(path: string, handler: ((err: Error | null, arg: Request) => Response)): void
+  get(path: string, handler: ((err: Error | null, arg: Request) => Response | Promise<Response>)): void
   serve(): Promise<void>
 }
 

@@ -10,6 +10,7 @@ words:
   - msvc
   - napi
   - nixpkgs
+  - npmjs
   - oxlint
   - pkgs
   - rustc

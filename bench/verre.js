@@ -5,9 +5,9 @@ const app = new Verre()
 app.get('/', () => ({
   status: 200,
   headers: {
-    'Content-Type': 'text/plain',
+    'content-type': 'text/plain',
   },
-  body: 'Hello from Verre!'
+  body: 'Hi'
 }))
 
 app.get('/id/{id}', (_err, req) => {
@@ -17,7 +17,8 @@ app.get('/id/{id}', (_err, req) => {
   return {
     status: 200,
     headers: {
-      'Content-Type': 'text/plain',
+      'content-type': 'text/plain',
+      'x-powered-by': 'benchmark'
     },
     body: `${id} ${name}`
   }
@@ -29,7 +30,7 @@ app.get('/json', async (_err, req) => {
   return {
     status: 200,
     headers: {
-      'Content-Type': 'application/json'
+      'content-type': 'application/json'
     },
     body: JSON.stringify(json)
   }

@@ -557,7 +557,7 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { Request, Response, Verre } = nativeBinding
+const { Request, VerreRequest, Verre } = nativeBinding
 export { Request }
-export { Response }
+export { VerreRequest }
 export { Verre }

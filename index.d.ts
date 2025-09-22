@@ -4,20 +4,15 @@ export declare class Request {
   bytes(): Promise<Uint8Array | null>
   get url(): string
 }
-
-export declare class Response {
-  constructor()
-  static text(body: string): ResponseInner
-  static json(value: any): ResponseInner
-}
+export type VerreRequest = Request
 
 export declare class Verre {
   constructor()
-  get(path: string, handler: ((err: Error | null, arg: Request) => ResponseInner)): void
+  get(path: string, handler: ((err: Error | null, arg: Request) => Response)): void
   serve(): Promise<void>
 }
 
-export interface ResponseInner {
+export interface Response {
   headers?: Record<string, string>
   status?: number
   body: string

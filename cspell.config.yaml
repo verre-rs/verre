@@ -7,6 +7,7 @@ words:
   - clippy
   - codegen
   - emnapi
+  - fasthttp
   - msvc
   - napi
   - nixpkgs

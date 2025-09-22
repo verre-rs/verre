@@ -27,6 +27,9 @@
               rustfmt
               clippy
               rust-analyzer
+
+              # bench
+              bombardier
             ];
 
             RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;

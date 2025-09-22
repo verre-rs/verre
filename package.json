@@ -56,9 +56,11 @@
   },
   "devDependencies": {
     "@napi-rs/cli": "^3.2.0",
+    "@types/node": "^24.5.2",
     "npm-run-all2": "^8.0.4",
     "oxlint": "^1.14.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.52.0"
   },
   "packageManager": "pnpm@10.17.0"
 }

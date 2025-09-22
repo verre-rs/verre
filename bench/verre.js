@@ -1,4 +1,4 @@
-import { Verre } from './index.js'
+import { Verre } from '../index.js'
 
 const app = new Verre()
 
@@ -11,7 +11,7 @@ app.get('/', () => ({
 }))
 
 app.get('/id/{id}', (_err, req) => {
-  const id = new URL(req.url).pathname.slice(4)
+  const id = new URL(req.url, 'http://example.com').pathname.slice(4)
   const name = new URLSearchParams(req.query ?? '').get('name')
 
   return {
@@ -24,7 +24,7 @@ app.get('/id/{id}', (_err, req) => {
 })
 
 app.get('/json', async (_err, req) => {
-  const json: unknown = await req.json()
+  const json = await req.json()
 
   return {
     status: 200,
@@ -36,3 +36,4 @@ app.get('/json', async (_err, req) => {
 })
 
 app.serve()
+console.log('Listening to port 3000')

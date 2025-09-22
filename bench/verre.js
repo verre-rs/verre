@@ -24,7 +24,7 @@ app.get('/id/{id}', (_err, req) => {
   }
 })
 
-app.get('/json', async (_err, req) => {
+app.post('/json', async (_err, req) => {
   const json = await req.json()
 
   return {

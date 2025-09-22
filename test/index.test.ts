@@ -21,8 +21,7 @@ describe('@verre/core', () => {
       body: res3Body,
       headers: { 'content-type': 'application/json', 'content-length': res3Body.length.toString() },
     })
-    // TODO: fix this
-    // expect(res3.headers.get('content-type')).toBe('application/json')
+    expect(res3.headers.get('content-type')).toBe('application/json')
 
     const res3Text = await res3.text()
     expect(res3Text).toBe(res3Body)

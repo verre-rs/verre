@@ -12,6 +12,7 @@ export type VerreRequest = Request
 export declare class Verre {
   constructor()
   get(path: string, handler: ((err: Error | null, arg: Request) => Response | Promise<Response>)): void
+  post(path: string, handler: ((err: Error | null, arg: Request) => Response | Promise<Response>)): void
   serve(): Promise<void>
 }
 

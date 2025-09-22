@@ -51,6 +51,20 @@ impl Verre {
   }
 
   #[napi]
+  pub fn post(
+    &mut self,
+    path: String,
+    handler: ThreadsafeFunction<VerreRequest, Either<VerreResponse, Promise<VerreResponse>>>,
+  ) {
+    let handler = Arc::new(handler);
+
+    self.0 = self.0.clone().route(
+      &path,
+      routing::post(|req| async move { Self::use_handler(req, handler).await }),
+    );
+  }
+
+  #[napi]
   pub async unsafe fn serve(&mut self) {
     // TODO: custom port, host
     let listener = napi::tokio::net::TcpListener::bind("127.0.0.1:3000")

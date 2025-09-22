@@ -50,6 +50,7 @@
     "format:rs": "cargo fmt",
     "lint": "oxlint",
     "prepublishOnly": "napi prepublish -t npm",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "version": "napi version"
   },
   "devDependencies": {

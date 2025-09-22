@@ -12,7 +12,17 @@ pub struct VerreResponse {
 }
 
 pub fn into_response(res: VerreResponse) -> Response<Body> {
-  let builder = axum::response::Response::builder();
+  let mut builder = axum::response::Response::builder();
+
+  if let Some(status) = res.status {
+    builder = builder.status(status);
+  }
+
+  if let Some(headers) = res.headers {
+    for (key, value) in headers {
+      builder = builder.header(key, value);
+    }
+  }
 
   builder.body(Body::from(res.body)).unwrap().into_response()
 }

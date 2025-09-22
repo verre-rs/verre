@@ -55,13 +55,7 @@
     "version": "napi version"
   },
   "devDependencies": {
-    "@emnapi/core": "^1.5.0",
-    "@emnapi/runtime": "^1.5.0",
     "@napi-rs/cli": "^3.2.0",
-    "@napi-rs/wasm-runtime": "^1.0.4",
-    "@oxc-node/core": "^0.0.32",
-    "@tybys/wasm-util": "^0.10.0",
-    "emnapi": "^1.5.0",
     "npm-run-all2": "^8.0.4",
     "oxlint": "^1.14.0",
     "typescript": "^5.9.2"

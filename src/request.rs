@@ -1,20 +1,20 @@
 use axum::{
-  body::{to_bytes, Body as AxumBody},
-  http::Request as AxumRequest,
+  body::{to_bytes, Body},
+  http::Request,
 };
 use napi::bindgen_prelude::Uint8Array;
 use napi_derive::napi;
 
-#[napi]
-pub struct Request(AxumRequest<AxumBody>);
+#[napi(js_name = "Request")]
+pub struct VerreRequest(Request<Body>);
 
 #[napi]
-impl Request {
-  pub fn from_axum(request: AxumRequest<AxumBody>) -> Self {
+impl VerreRequest {
+  pub fn from_axum(request: Request<Body>) -> Self {
     Self(request)
   }
 
-  // pub fn to_axum(self) -> AxumRequest<AxumBody> {
+  // pub fn to_axum(self) -> Request<Body> {
   //   self.0
   // }
 

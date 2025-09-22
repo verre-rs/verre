@@ -5,6 +5,6 @@ mod request;
 mod response;
 mod verre;
 
-pub use request::Request;
-pub use response::{Response, ResponseInner};
+pub use request::VerreRequest;
+pub use response::{into_response, VerreResponse};
 pub use verre::Verre;

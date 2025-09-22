@@ -1,13 +1,12 @@
 use std::sync::Arc;
 
-use axum::body::Body;
-use axum::response::{IntoResponse, Response as AxumResponse};
+use axum::response::Response;
+use axum::{body::Body, http::Request};
 use axum::{routing, Router};
 use napi::threadsafe_function::ThreadsafeFunction;
 use napi_derive::napi;
 
-use crate::Request;
-use crate::ResponseInner;
+use crate::{into_response, VerreRequest, VerreResponse};
 
 #[napi]
 pub struct Verre(Router);
@@ -20,22 +19,20 @@ impl Verre {
   }
 
   async fn use_handler(
-    req: axum::http::Request<axum::body::Body>,
-    handler: Arc<ThreadsafeFunction<Request, ResponseInner>>,
-  ) -> AxumResponse {
+    req: Request<Body>,
+    handler: Arc<ThreadsafeFunction<VerreRequest, VerreResponse>>,
+  ) -> Response {
     let handler = Arc::clone(&handler);
 
-    let req = Request::from_axum(req);
+    let req = VerreRequest::from_axum(req);
 
     let res = handler.call_async(Ok(req)).await.unwrap();
 
-    let builder = axum::response::Response::builder();
-
-    builder.body(Body::from(res.body)).unwrap().into_response()
+    into_response(res)
   }
 
   #[napi]
-  pub fn get(&mut self, path: String, handler: ThreadsafeFunction<Request, ResponseInner>) {
+  pub fn get(&mut self, path: String, handler: ThreadsafeFunction<VerreRequest, VerreResponse>) {
     let handler = Arc::new(handler);
 
     self.0 = self.0.clone().route(
